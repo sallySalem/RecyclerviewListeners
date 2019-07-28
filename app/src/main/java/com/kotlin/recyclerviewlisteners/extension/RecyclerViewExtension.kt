@@ -20,6 +20,10 @@ interface OnCheckedChangeListener {
     fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean, position: Int)
 }
 
+interface OnRadioGroupCheckedChangeListener {
+    fun onCheckedChanged(group: RadioGroup, checkedId: Int, rowPosition: Int)
+}
+
 
 fun RecyclerView.addOnItemClickListener(onClickListener: OnItemClickListener) {
     this.addOnChildAttachStateChangeListener(object : RecyclerView.OnChildAttachStateChangeListener {
@@ -77,6 +81,31 @@ fun RecyclerView.addOnCheckedChangeListener(onCheckedChangeListener: OnCheckedCh
                 val subview = view.getChildAt(index)
                 if(subview is CompoundButton) {
                     subview.setOnCheckedChangeListener (null)
+                }
+            }
+        }
+    })
+}
+
+fun RecyclerView.addOnRadioGroupCheckedChangeListener(onRadioGroupCheckedChangeListener: OnRadioGroupCheckedChangeListener) {
+    this.addOnChildAttachStateChangeListener(object : RecyclerView.OnChildAttachStateChangeListener {
+        override fun onChildViewAttachedToWindow(view: View) {
+            val holder = getChildViewHolder(view)
+            for (index in 0 until (view as ViewGroup).childCount) {
+                val subview = view.getChildAt(index)
+                if (subview is RadioGroup) {
+                    subview.setOnCheckedChangeListener { group, buttonId ->
+                        onRadioGroupCheckedChangeListener.onCheckedChanged(group, buttonId, holder.adapterPosition)
+                    }
+                }
+            }
+        }
+
+        override fun onChildViewDetachedFromWindow(view: View) {
+            for (index in 0 until (view as ViewGroup).childCount) {
+                val subview = view.getChildAt(index)
+                if (subview is RadioGroup) {
+                    subview.setOnCheckedChangeListener(null)
                 }
             }
         }

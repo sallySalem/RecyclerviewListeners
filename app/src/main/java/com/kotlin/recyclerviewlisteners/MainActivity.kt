@@ -8,10 +8,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kotlin.recyclerviewlisteners.extension.OnCheckedChangeListener
-import com.kotlin.recyclerviewlisteners.extension.OnSubItemClickListener
-import com.kotlin.recyclerviewlisteners.extension.addOnCheckedChangeListener
-import com.kotlin.recyclerviewlisteners.extension.addOnSubItemClickListener
+import com.kotlin.recyclerviewlisteners.extension.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -45,6 +42,15 @@ class MainActivity : AppCompatActivity() {
                     "CompoundButton at $position  _  ${buttonView.text}   _  state = $isChecked",
                     Toast.LENGTH_LONG
                 ).show()
+            }
+
+        })
+
+        rvList.addOnRadioGroupCheckedChangeListener(object: OnRadioGroupCheckedChangeListener {
+            override fun onCheckedChanged(group: RadioGroup, checkedId: Int, rowPosition: Int) {
+
+                val rb = findViewById<View>(checkedId) as RadioButton
+                Toast.makeText(this@MainActivity, "RadioGroup at $rowPosition  _  ${rb.text}", Toast.LENGTH_LONG).show()
             }
 
         })

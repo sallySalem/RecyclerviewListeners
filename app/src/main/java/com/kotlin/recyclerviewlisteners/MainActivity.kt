@@ -25,10 +25,6 @@ class MainActivity : AppCompatActivity() {
         rvList.layoutManager = LinearLayoutManager(this)
         rvList.adapter = adapter
 
-        rvList.addOnItemClickListener(object: OnItemClickListener {
-            override fun onItemClicked(position: Int, view: View) {
-                Toast.makeText(this@MainActivity, "row at $position", Toast.LENGTH_LONG).show()
-            }
-        })
+
     }
 }

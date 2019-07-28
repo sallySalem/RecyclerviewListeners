@@ -46,7 +46,7 @@ fun RecyclerView.addOnSubItemClickListener(onClickListener: OnSubItemClickListen
                 val holder = getChildViewHolder(view)
                 for (index in 0 until (view as ViewGroup).childCount) {
                     val subview = view.getChildAt(index)
-                    view.setOnClickListener {
+                    subview.setOnClickListener {
                     onClickListener.onSubItemClicked(holder.adapterPosition, subview)
                 }
             }

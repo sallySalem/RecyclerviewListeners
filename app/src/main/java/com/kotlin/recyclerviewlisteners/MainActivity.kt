@@ -23,37 +23,9 @@ class MainActivity : AppCompatActivity() {
             list.add("item $i")
         }
 
-        val adapter = ItemAdapter(list)
+        val adapter = ItemAdapter(list) { Toast.makeText(this@MainActivity, "item at $it", Toast.LENGTH_LONG).show() }
         rvList.layoutManager = LinearLayoutManager(this)
         rvList.adapter = adapter
-
-        rvList.addOnSubItemClickListener(object : OnSubItemClickListener {
-            override fun onSubItemClicked(position: Int, view: View) {
-                Toast.makeText(this@MainActivity, "item at $position", Toast.LENGTH_LONG).show()
-            }
-
-        })
-        
-        rvList.addOnCheckedChangeListener(object : OnCheckedChangeListener {
-            override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean, position: Int) {
-
-                Toast.makeText(
-                    this@MainActivity,
-                    "CompoundButton at $position  _  ${buttonView.text}   _  state = $isChecked",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-
-        })
-
-        rvList.addOnRadioGroupCheckedChangeListener(object: OnRadioGroupCheckedChangeListener {
-            override fun onCheckedChanged(group: RadioGroup, checkedId: Int, rowPosition: Int) {
-
-                val rb = findViewById<View>(checkedId) as RadioButton
-                Toast.makeText(this@MainActivity, "RadioGroup at $rowPosition  _  ${rb.text}", Toast.LENGTH_LONG).show()
-            }
-
-        })
 
     }
 }

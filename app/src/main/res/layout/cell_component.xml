@@ -5,11 +5,26 @@
         android:layout_height="wrap_content"
         android:background="#44008577"
         android:layout_margin="10dp"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:orientation="vertical">
 
     <TextView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_weight="1"/>
+            android:id="@+id/textView"/>
+
+    <CheckBox
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox" />
+    <Switch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/switch1"/>
+
+    <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton"/>
 </LinearLayout>

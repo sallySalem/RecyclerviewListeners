@@ -8,10 +8,14 @@
         android:padding="5dp"
         android:orientation="vertical">
 
+    <!-- Sub item textView -->
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView"/>
+
+
+    <!-- Sub item CompoundButton -->
 
     <CheckBox
             android:layout_marginTop="20dp"
@@ -27,4 +31,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/radioButton"/>
+
+
+
+    <!-- Sub item RadioGroup -->
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RadioGroup"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:clickable="false"/>
+    <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <RadioButton android:id="@+id/radio_2"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Radio Button 1"/>
+        <RadioButton android:id="@+id/radio_1"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Radio Button 2"/>
+    </RadioGroup>
+
+
 </LinearLayout>

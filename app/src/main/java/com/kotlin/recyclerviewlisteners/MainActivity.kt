@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kotlin.recyclerviewlisteners.extension.OnItemClickListener
-import com.kotlin.recyclerviewlisteners.extension.addOnItemClickListener
+import com.kotlin.recyclerviewlisteners.extension.OnSubItemClickListener
+import com.kotlin.recyclerviewlisteners.extension.addOnSubItemClickListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +24,13 @@ class MainActivity : AppCompatActivity() {
         val adapter = ItemAdapter(list)
         rvList.layoutManager = LinearLayoutManager(this)
         rvList.adapter = adapter
+        
+        rvList.addOnSubItemClickListener(object: OnSubItemClickListener {
+            override fun onSubItemClicked(position: Int, view: View) {
+                Toast.makeText(this@MainActivity, "item at $position", Toast.LENGTH_LONG).show()
+            }
 
-
+        })
+        
     }
 }

@@ -10,7 +10,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.cell_component.view.*
 
-class ItemAdapter( private val items: List<String>) : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
+class ItemAdapter(
+    private val items: List<String>,
+    private val mListener: (Int) -> Unit
+) :
+    RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.cell_component, viewGroup, false))
@@ -22,13 +26,16 @@ class ItemAdapter( private val items: List<String>) : RecyclerView.Adapter<ItemA
         (holder.switch as Switch).text = "Switch at ${items[position]}"
         (holder.radioButton as RadioButton).text = "RadioButton at ${items[position]}"
 
+        holder.itemView.setOnClickListener {
+            mListener.invoke(position)
+        }
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
 
-    class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tv = view.textView
         val checkBox = view.checkBox
         val switch = view.switch1
